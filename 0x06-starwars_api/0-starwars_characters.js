@@ -41,9 +41,7 @@ const getCharNames = async () => {
   await requestCharacters();
   await requestNames();
 
-  for (const n of names) {
-    console.log(n);
-  }
+  names.forEach(name => console.log(name));
 };
 
 getCharNames();
