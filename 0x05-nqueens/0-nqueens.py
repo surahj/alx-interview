@@ -29,11 +29,13 @@ def safe_positions(board, row, n):
             allowed = True
             for i in range(row):
                 if is_position_safe(board, i, j, row):
+                    print("Not allowed")
                     allowed = False
             if allowed:
                 board[row] = j
                 print("save postion is called", board)
                 safe_positions(board, row + 1, n)
+                print("checked")
 
 
 def create_board(size):
