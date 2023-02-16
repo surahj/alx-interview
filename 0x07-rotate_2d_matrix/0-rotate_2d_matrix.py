@@ -8,5 +8,6 @@ def rotate_2d_matrix(matrix):
     """ Given an n x n 2D matrix, rotate it 90 degrees clockwise
     """
     for index, value in enumerate(zip(*reversed(matrix))):
-        print(index, value)
         matrix[index] = list(value)
+
+    return matrix
