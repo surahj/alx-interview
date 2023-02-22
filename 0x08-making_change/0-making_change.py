@@ -22,6 +22,6 @@ def makeChange(coins, total):
     for i in range(1, total + 1):
         for coin in coins:
             if coin <= i:
-                num_coins[i] = min(min_coins[i], min_coins[i - coin] + 1)
+                min_coins[i] = min(min_coins[i], min_coins[i - coin] + 1)
 
-    return min_coins[total] if min_coins[total] != float('inf') else -1
+    return min_coins[total] if min_coins[total] != float("inf") else -1
