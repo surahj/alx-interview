@@ -18,10 +18,13 @@ def makeChange(coins, total):
     """
     if total <= 0:
         return 0
-    min_coins = [float('inf')] * (total + 1)
-    min_coins[0] = 0
-    for coin in coins:
-        for i in range(coin, total + 1):
-            min_coins[i] = min(min_coins[i], min_coins[i - coin] + 1)
-
-    return min_coins[total] if min_coins[total] != float('inf') else -1
+    min_coins = [0] + [float('inf')] * total
+    for i in range(1, total + 1):
+        for coin in coins:
+            if coin <= i:
+                num_coins = min_coins[i - coin] + 1
+                if num_coins < min_coins[i]:
+                    min_coins[i] = num_coins
+    if min_coins[-1] == float("inf"):
+        return -1
+    return min_coins[total]
