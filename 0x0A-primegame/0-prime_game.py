@@ -1,13 +1,17 @@
 #!/usr/bin/python3
 """
-Module: Game of choosing Prime numbers
+Contains method to determine the winner of a game
+of prime numbers.
 """
 
 
-def primeNumbers(n):
-    """Return list of prime numbers between 1 and n inclusive
-       Args:
-        n (int): upper boundary of range. lower boundary is always 1
+def prime_numbers_between(n):
+    """
+    calculate prime numbers between 1 and n
+    Args:
+        n (int): the number to calculate prime numbers up to
+    Returns:
+        int: the number of prime numbers between 1 and n
     """
     prime_numbers = 0
 
@@ -23,24 +27,29 @@ def primeNumbers(n):
 
 def isWinner(x, nums):
     """
-    Determines winner of Prime Game
+    Determines the winner of a game of prime numbers.
     Args:
-        x (int): no. of rounds of game
-        nums (int): upper limit of range for each round
-    Return:
-        Name of winner (Maria or Ben) or None if winner cannot be found
+        x (int): the number of rounds to play
+        nums (list): the list of numbers n to play
+    Returns:
+        string: the winner of the game (Ben or Maria)
     """
-    if x is None or nums is None or x == 0 or nums == []:
+    if not x or not nums:
         return None
-    Maria = Ben = 0
+
+    if x > 10000:
+        return None
+    ben = 0
+    maria = 0
     for i in range(x):
-        primeNos = primeNumbers(nums[i])
-        if len(primeNos) % 2 == 0:
-            Ben += 1
+        if nums[i] > 10000:
+            return None
+        prime_nums = prime_numbers_between(nums[i])
+        if prime_nums % 2 == 0:
+            ben += 1
         else:
-            Maria += 1
-    if Maria > Ben:
-        return 'Maria'
-    elif Ben > Maria:
-        return 'Ben'
-    return None
+            maria += 1
+    if ben == maria:
+        return None
+    winner = "Ben" if ben > maria else "Maria"
+    return winner
