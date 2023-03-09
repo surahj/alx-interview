@@ -9,14 +9,16 @@ def primeNumbers(n):
        Args:
         n (int): upper boundary of range. lower boundary is always 1
     """
-    primeNos = []
-    filtered = [True] * (n + 1)
-    for prime in range(2, n + 1):
-        if (filtered[prime]):
-            primeNos.append(prime)
-            for i in range(prime, n + 1, prime):
-                filtered[i] = False
-    return primeNos
+    prime_numbers = 0
+
+    for i in range(2, n + 1):
+        is_prime = True
+        for j in range(2, i // 2 + 1):
+            if i % j == 0:
+                is_prime = False
+        if is_prime:
+            prime_numbers += 1
+    return prime_numbers
 
 
 def isWinner(x, nums):
