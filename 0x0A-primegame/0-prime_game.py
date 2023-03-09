@@ -37,9 +37,14 @@ def isWinner(x, nums):
     """
     if not x or not nums:
         return None
+
+    if x > 10000:
+        return None
     ben = 0
     maria = 0
     for i in range(x):
+        if nums[i] > 10000:
+            return None
         prime_nums = prime_numbers_between(nums[i])
         if prime_nums % 2 == 0:
             ben += 1
